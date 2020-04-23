@@ -9,14 +9,19 @@ import { Domains } from './Methods/Domains';
 // Types
 import { Definition as RequestDefinition } from '@chris-talman/request';
 
+// Constants
+const URL_EXPRESSION = /^https:\/\//;
+
 export class Client
 {
 	public readonly domain: Domain;
 	public readonly accessToken: string;
-	constructor({domain, accessToken}: Pick<Client, 'domain' | 'accessToken'>)
+	constructor({url, accessToken}: {url: string} & Pick<Client, 'accessToken'>)
 	{
-		this.accessToken = accessToken;
-		const url = `https://${domain}`;
+		if (!URL_EXPRESSION.test(url))
+		{
+			throw new Error('URL must start with https://');
+		};
 		this.domain = new Domain
 		(
 			{
@@ -24,6 +29,7 @@ export class Client
 				auth: () => 'Bearer ' + accessToken
 			}
 		);
+		this.accessToken = accessToken;
 	};
 	public domains = new Domains({client: this});
 	public async executeApiRequest <GenericResultJson, GenericResult extends RequestResult<GenericResultJson>> ({request}: {request: RequestDefinition})
