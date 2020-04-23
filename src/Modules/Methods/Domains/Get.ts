@@ -26,6 +26,6 @@ export async function get(this: Resource, {id}: Parameters)
 			}
 		}
 	);
-	const domains = guaranteeResultJson(result);
-	return domains;
+	const domain = guaranteeResultJson(result);
+	return domain;
 };
