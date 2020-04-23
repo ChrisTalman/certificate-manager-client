@@ -1,7 +1,7 @@
 {
 	"name": "@chris-talman/certificate-manager-client",
-	"description": "Methods to access a Certificate Manager API",
-	"version": "4.3.0",
+	"description": "Methods to access the Certificate Manager API",
+	"version": "1.0.0",
 	"devDependencies": {
 		"@types/node": "12.11.1",
 		"nodemon": "1.19.4",
