@@ -1,13 +1,16 @@
 declare module '@chris-talman/certificate-manager-client'
 {
+	// Types
+	import * as Request from '@chris-talman/request';
+
 	// Client
 	export class Client
 	{
-		public readonly domain: string;
+		public readonly domain: Request.Domain;
 		public readonly accessToken: string;
 		/** @see StorageOptions */
 		public readonly storage?: StorageOptions;
-		constructor({domain, accessToken, storage}: Pick<Client, 'domain' | 'accessToken' | 'storage'>);
+		constructor({url, accessToken, storage}: {url: string} & Pick<Client, 'accessToken' | 'storage'>);
 		public readonly domains: Domains;
 	}
 	/** Global options for the automatic storage of fetched data in the file system. */
