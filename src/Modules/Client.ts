@@ -8,6 +8,12 @@ import { Domains } from './Methods/Domains';
 
 // Types
 import { Definition as RequestDefinition } from '@chris-talman/request';
+/** Global options for the automatic storage of fetched data in the file system. */
+export interface StorageOptions
+{
+	/** Path to directory. */
+	directory: string;
+};
 
 // Constants
 const URL_EXPRESSION = /^https:\/\//;
@@ -16,7 +22,9 @@ export class Client
 {
 	public readonly domain: Domain;
 	public readonly accessToken: string;
-	constructor({url, accessToken}: {url: string} & Pick<Client, 'accessToken'>)
+	/** @see StorageOptions */
+	public readonly storage?: StorageOptions;
+	constructor({url, accessToken, storage}: {url: string} & Pick<Client, 'accessToken' | 'storage'>)
 	{
 		if (!URL_EXPRESSION.test(url))
 		{
@@ -30,6 +38,7 @@ export class Client
 			}
 		);
 		this.accessToken = accessToken;
+		this.storage = storage;
 	};
 	public domains = new Domains({client: this});
 	public async executeApiRequest <GenericResultJson, GenericResult extends RequestResult<GenericResultJson>> ({request}: {request: RequestDefinition})

@@ -5,8 +5,16 @@ declare module '@chris-talman/certificate-manager-client'
 	{
 		public readonly domain: string;
 		public readonly accessToken: string;
+		/** @see StorageOptions */
+		public readonly storage?: StorageOptions;
 		constructor({domain, accessToken}: Pick<Client, 'domain' | 'accessToken'>);
 		public readonly domains: Domains;
+	}
+	/** Global options for the automatic storage of fetched data in the file system. */
+	export interface StorageOptions
+	{
+		/** Path to directory. */
+		directory: string;
 	}
 
 	// Resource
@@ -25,6 +33,8 @@ declare module '@chris-talman/certificate-manager-client'
 	export interface DomainsParameters
 	{
 		id: string;
+		/** Overrides global storage options. */
+		storage?: StorageOptions | false;
 	}
 	export interface Domain
 	{
