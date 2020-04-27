@@ -7,7 +7,7 @@ declare module '@chris-talman/certificate-manager-client'
 		public readonly accessToken: string;
 		/** @see StorageOptions */
 		public readonly storage?: StorageOptions;
-		constructor({domain, accessToken}: Pick<Client, 'domain' | 'accessToken'>);
+		constructor({domain, accessToken, storage}: Pick<Client, 'domain' | 'accessToken' | 'storage'>);
 		public readonly domains: Domains;
 	}
 	/** Global options for the automatic storage of fetched data in the file system. */
