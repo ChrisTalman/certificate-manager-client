@@ -54,6 +54,6 @@ async function storeKeys({domain, storage, resource}: {domain: Domain, storage?:
 async function optionalWriteFile({postfix, content, domain, storage}: {postfix: string, content?: string, domain: Domain, storage: StorageOptions})
 {
 	if (!content) return;
-	const path = `${Path.join(storage.directory)}/${domain.id}_${postfix}`;
+	const path = Path.join(storage.directory, `${domain.id}_${postfix}`);
 	await writeFile(path, content);
 };
