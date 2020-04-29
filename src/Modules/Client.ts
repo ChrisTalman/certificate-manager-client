@@ -34,7 +34,8 @@ export class Client
 		(
 			{
 				path: url,
-				auth: () => 'Bearer ' + accessToken
+				auth: () => 'Bearer ' + accessToken,
+				queryBody: 'body'
 			}
 		);
 		this.accessToken = accessToken;
