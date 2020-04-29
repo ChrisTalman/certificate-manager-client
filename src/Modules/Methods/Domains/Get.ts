@@ -2,7 +2,7 @@
 
 // External Modules
 import { promises as FileSystemPromises } from 'fs';
-const { writeFile } = FileSystemPromises;
+const { writeFile, mkdir: createDirectory } = FileSystemPromises;
 import * as Path from 'path';
 import { guaranteeResultJson, Result } from '@chris-talman/request';
 
@@ -70,6 +70,7 @@ async function storeKeys({domain, storage, resource}: {domain: Domain, storage?:
 {
 	storage = storage ?? resource._client.storage;
 	if (!storage) return;
+	await createDirectory(storage.directory, {recursive: true});
 	await Promise.all
 	(
 		[
