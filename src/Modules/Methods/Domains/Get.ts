@@ -28,6 +28,34 @@ export async function get(this: Resource, {id, storage}: Parameters)
 			{
 				method: 'GET',
 				path: `/domains/${id}`,
+				body:
+				{
+					pluck:
+					[
+						'id',
+						'organisationId',
+						'name',
+						'type',
+						'certificate',
+						'privateKey',
+						'issued',
+						'expiry',
+						{
+							route53:
+							[
+								'accessKeyId',
+								'secretAccessKey',
+								'hostedZoneId'
+							],
+							events:
+							[
+								'id',
+								'type',
+								'message'
+							]
+						}
+					]
+				},
 				jsonResponseSuccess: true,
 				jsonResponseError: true
 			}
