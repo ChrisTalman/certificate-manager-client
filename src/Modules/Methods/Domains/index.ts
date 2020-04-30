@@ -1,8 +1,12 @@
 'use strict';
 
+// External Modules
+import * as Path from 'path';
+
 // Internal Modules
 import { Resource } from 'src/Modules/Resource';
 import { get } from './Get';
+import { generateStoragePath } from './StoragePath';
 
 // Types
 export interface Domain
@@ -24,4 +28,5 @@ export type DomainType = 'route53';
 export class Domains extends Resource
 {
 	public get = get;
+	public generateStoragePath = generateStoragePath;
 };

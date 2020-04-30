@@ -31,6 +31,8 @@ declare module '@chris-talman/certificate-manager-client'
 	export class Domains extends Resource
 	{
 		public get(parameters: DomainsParameters): Promise<Domain>;
+		/** Generates a storage path based on the global storage options for the given postfix. */
+		public generateStoragePath({id, postfix, storage}: {id: string, postfix: 'certificate' | 'privateKey', storage: StorageOptions}): string;
 	}
 	// Domains: Get
 	export interface DomainsParameters
