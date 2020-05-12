@@ -21,8 +21,7 @@ module.exports =
 		alias:
 		{
 			root: __dirname + '/',
-			src: __dirname + '/src',
-			common: Path.join(__dirname, '../Common')
+			src: __dirname + '/src'
 		}
 	},
 	output:
